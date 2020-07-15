@@ -1,21 +1,10 @@
-pipeline {
-    agent any
+#!/usr/bin/env groovy
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
-    }
-}
+@Library('cbp') _
+
+maven3Pipeline(
+        [
+                continuousDelivery: false,
+                brancheSonar: 'develop'
+        ]
+)
